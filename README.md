@@ -1,196 +1,157 @@
-# Campo Minado em Java
+# 💣 Campo Minado
 
-Projeto desenvolvido em Java inspirado no jogo clássico Minesweeper, utilizando conceitos de Programação Orientada a Objetos, tratamento de exceções e testes unitários.
+Um jogo inspirado no clássico **Minesweeper**, desenvolvido em **Java** utilizando **Swing** para a interface gráfica.
+
+O projeto foi criado com o objetivo de aplicar conceitos de Programação Orientada a Objetos (POO), eventos, observadores (Observer Pattern) e desenvolvimento de interfaces gráficas desktop utilizando Java.
 
 ---
 
-# Estrutura do Projeto
+## 🎮 Sobre o Jogo
 
-```plaintext
+O Campo Minado é um jogo de lógica onde o jogador deve revelar todas as casas seguras do tabuleiro sem clicar em uma bomba.
+
+Ao selecionar uma casa:
+
+- Se não houver bomba, a casa é revelada.
+- Se houver uma bomba, ocorre uma explosão.
+- Após a explosão, todas as bombas do tabuleiro são exibidas.
+- O jogador pode marcar casas suspeitas com bandeiras para facilitar sua estratégia.
+
+A partida termina quando:
+
+✅ Todas as casas seguras forem abertas (Vitória)
+
+❌ Uma bomba for acionada (Derrota)
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- Java
+- Java Swing
+- Eclipse IDE
+- Programação Orientada a Objetos
+- Observer Pattern
+
+---
+
+## 📂 Estrutura do Projeto
+
+```text
 src
 └── br.com.cod3r.cm
-    ├── excecao
-    │   ├── ExplosaoException.java
-    │   └── SairException.java
-    │
     ├── modelo
     │   ├── Campo.java
+    │   ├── CampoEvento.java
+    │   ├── CampoObservador.java
+    │   ├── ResultadoEvento.java
     │   └── Tabuleiro.java
     │
-    ├── visao
-    │   └── TabuleiroConsole.java
-    │
-    └── Aplicacao.java
-
-test
-└── br.com.cod3r.cm.modelo
-    └── CampoTeste.java
+    └── visao
+        ├── BotaoCampo.java
+        ├── PainelTabuleiro.java
+        └── TelaPrincipal.java
 ```
 
----
+### 📦 Pacote Modelo
 
-# Sobre o Projeto
+Responsável pelas regras de negócio do jogo.
 
-O projeto simula o funcionamento do jogo Campo Minado, onde o jogador deve abrir os campos do tabuleiro sem encontrar minas escondidas.
+| Classe | Responsabilidade |
+|----------|------------------|
+| Campo | Representa uma célula do tabuleiro |
+| CampoEvento | Eventos gerados pelas ações do campo |
+| CampoObservador | Interface de observação dos eventos |
+| ResultadoEvento | Resultado final da partida |
+| Tabuleiro | Gerencia todo o tabuleiro e suas regras |
 
-O sistema foi organizado em pacotes para separar:
-- regras do jogo;
-- interface;
-- tratamento de exceções;
-- testes automatizados.
+### 🖥️ Pacote Visão
 
----
+Responsável pela interface gráfica.
 
-# Pacote `modelo`
-
-Responsável pela lógica principal do jogo.
-
-## `Campo.java`
-
-Representa cada célula individual do tabuleiro.
-
-### Responsabilidades:
-- armazenar posição da célula;
-- verificar se possui mina;
-- controlar abertura do campo;
-- controlar marcações;
-- armazenar vizinhos;
-- verificar explosões.
-
-### Funcionalidades principais:
-- abrir campo;
-- adicionar vizinhos;
-- alternar marcação;
-- verificar minas na vizinhança.
+| Classe | Responsabilidade |
+|----------|------------------|
+| BotaoCampo | Representação visual de cada campo |
+| PainelTabuleiro | Painel contendo todas as células |
+| TelaPrincipal | Janela principal do jogo |
 
 ---
 
-## `Tabuleiro.java`
+## 🚀 Funcionalidades
 
-Responsável por controlar todo o tabuleiro do jogo.
-
-### Responsabilidades:
-- criar os campos;
-- associar vizinhos;
-- distribuir minas;
-- verificar vitória;
-- reiniciar partida.
-
-### Funcionalidades principais:
-- gerar tabuleiro;
-- sortear minas;
-- validar objetivo alcançado;
-- reiniciar jogo.
+- Campo minado totalmente funcional
+- Interface gráfica com Java Swing
+- Sistema de explosão
+- Revelação automática das bombas
+- Marcação de bandeiras
+- Verificação de vitória
+- Atualização visual em tempo real
+- Separação entre lógica e interface
 
 ---
 
-# Pacote `visao`
+## 🎯 Como Jogar
 
-Responsável pela interação com o usuário.
+### Clique Esquerdo
 
-## `TabuleiroConsole.java`
+Abre uma casa do tabuleiro.
 
-Classe responsável pela interface em console.
+### Clique Direito
 
-### Responsabilidades:
-- exibir tabuleiro;
-- receber comandos do jogador;
-- mostrar mensagens de vitória ou derrota;
-- controlar fluxo da partida.
+Marca ou desmarca uma casa suspeita de conter bomba.
 
----
+### Objetivo
 
-# Pacote `excecao`
-
-Responsável pelas exceções personalizadas do projeto.
-
-## `ExplosaoException.java`
-
-Exceção lançada quando o jogador abre um campo minado.
-
-### Objetivo:
-- interromper a execução da partida;
-- indicar derrota.
+Abrir todas as casas seguras sem acionar nenhuma bomba.
 
 ---
 
-## `SairException.java`
+## ▶️ Executando o Projeto
 
-Exceção utilizada para encerrar o jogo de maneira controlada.
+### Pré-requisitos
 
-### Objetivo:
-- permitir saída do jogo sem encerrar abruptamente o programa.
+- Java JDK 8+
+- Eclipse IDE (ou outra IDE Java)
 
----
+### Passos
 
-# `Aplicacao.java`
+1. Clone o repositório:
 
-Classe principal do projeto.
+```bash
+git clone https://github.com/seu-usuario/campo-minado.git
+```
 
-## Responsabilidade:
-- iniciar o sistema;
-- criar o tabuleiro;
-- iniciar o jogo no console.
+2. Abra o projeto no Eclipse.
 
-Contém o método:
+3. Execute a classe:
 
 ```java
-public static void main(String[] args)
+TelaPrincipal.java
 ```
 
----
-
-# Pasta `test`
-
-Responsável pelos testes automatizados do projeto.
-
-## `CampoTeste.java`
-
-Classe de testes unitários utilizando JUnit.
-
-### Objetivos:
-- validar funcionamento das regras do jogo;
-- testar explosões;
-- testar abertura de campos;
-- validar vizinhança entre campos.
+4. Aproveite o jogo!
 
 ---
 
-# Conceitos Utilizados
+## 📚 Conceitos Aplicados
 
 - Programação Orientada a Objetos (POO)
 - Encapsulamento
-- Tratamento de Exceções
-- Testes Unitários
-- Organização em Pacotes
-- Separação de Responsabilidades
+- Eventos
+- Observer Pattern
+- Componentes Swing
+- Interfaces Gráficas Desktop
+- Manipulação de Matrizes
+- Lógica de Jogos
 
 ---
 
-# Funcionalidades do Jogo
+## 🎓 Objetivo Acadêmico
 
-- geração automática do tabuleiro;
-- distribuição aleatória de minas;
-- abertura de campos;
-- marcação de bandeiras;
-- verificação de vitória;
-- sistema de derrota ao encontrar minas.
+Este projeto foi desenvolvido como forma de aprendizado e prática dos principais conceitos de Java Desktop, simulando o funcionamento do clássico Campo Minado através de uma arquitetura organizada entre modelo e visão.
 
 ---
 
-# Tecnologias Utilizadas
+## 👨‍💻 Autor
 
-- Java
-- JUnit
-- Eclipse IDE
-
----
-
-# Objetivo do Projeto
-
-O projeto foi desenvolvido com foco em aprendizado de:
-- lógica de programação;
-- orientação a objetos;
-- boas práticas em Java;
-- estruturação de projetos;
-- testes automatizados.
+Desenvolvido em Java utilizando Swing no Eclipse IDE.
